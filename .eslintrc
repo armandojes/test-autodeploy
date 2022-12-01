@@ -1,7 +1,10 @@
 {
-  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "extends": ["airbnb", "airbnb-typescript", "plugin:prettier/recommended"],
   "globals": {
     "document": "readonly"
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
   },
   "rules": {
     "react/react-in-jsx-scope": "off"

@@ -16,7 +16,7 @@ const Logo = styled.img`
   margin-bottom: 2em;
 `;
 
-const message: string = 'Hello armand'
+const message: string = 'Hello armand';
 
 function App() {
   return (
@@ -31,7 +31,5 @@ function App() {
     </>
   );
 }
-
-
 
 export default App;
