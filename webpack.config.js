@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const getConfig = (envs) => ({
-  entry: path.resolve(__dirname, './source/index.jsx'),
+  entry: path.resolve(__dirname, './source/index.tsx'),
   output: {
     path: path.resolve(__dirname, './build'),
     filename: 'app.js',
