@@ -12,17 +12,15 @@ const getConfig = (envs) => ({
   module: {
     rules: [
       {
-        test: /.js$|.jsx$|.tsx$|.ts$/,
+        test: /\.(js|jsx|ts|tsx)$/i,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: [
               '@babel/preset-env',
-              [
-                '@babel/preset-react',
-                { runtime: 'automatic' },
-              ],
+              ['@babel/preset-react', { runtime: 'automatic' }],
+              '@babel/preset-typescript',
             ],
             plugins: ['react-refresh/babel'],
           },
@@ -39,18 +37,20 @@ const getConfig = (envs) => ({
       },
     ],
   },
-  devServer: {
-    port: 3000,
-    hot: true,
-  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './source/index.html'),
     }),
     new ReactRefreshWebpackPlugin(),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  },
   mode: envs.env === 'production' ? 'production' : 'development',
-  devtool: 'source-map',
+  devServer: {
+    port: 3000,
+    hot: true,
+  },
 });
 
 module.exports = getConfig;
