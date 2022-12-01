@@ -22,7 +22,9 @@ const getConfig = (envs) => ({
               ['@babel/preset-react', { runtime: 'automatic' }],
               '@babel/preset-typescript',
             ],
-            plugins: ['react-refresh/babel'],
+            plugins: [
+              envs.env === 'development' && 'react-refresh/babel',
+            ].filter(Boolean),
           },
         },
       },
@@ -38,11 +40,12 @@ const getConfig = (envs) => ({
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, './source/index.html'),
-    }),
+    envs.env === 'development' &&
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, './source/index.html'),
+      }),
     new ReactRefreshWebpackPlugin(),
-  ],
+  ].filter(Boolean),
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
