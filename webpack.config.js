@@ -40,11 +40,10 @@ const getConfig = (envs) => ({
     ],
   },
   plugins: [
-    envs.env === 'development' &&
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, './source/index.html'),
-      }),
-    new ReactRefreshWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './source/index.html'),
+    }),
+    envs.env === 'development' && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
