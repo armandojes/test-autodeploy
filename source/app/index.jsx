@@ -1,6 +1,6 @@
-import { AppBar, Toolbar } from '@mui/material'
+import { AppBar, Toolbar } from '@mui/material';
 import styled from 'styled-components';
-import logo from './assets/logo.png'
+import logo from './assets/logo.png';
 
 const Body = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ const Logo = styled.img`
   margin-bottom: 2em;
 `;
 
-const App = () => {
+function App() {
   return (
     <>
       <AppBar>
@@ -29,7 +29,7 @@ const App = () => {
         hello Armand
       </Body>
     </>
-  )
-};
+  );
+}
 
 export default App;
