@@ -20,13 +20,11 @@ function App() {
   return (
     <>
       <AppBar>
-        <Toolbar>
-          hello
-        </Toolbar>
+        <Toolbar>hello</Toolbar>
       </AppBar>
       <Body>
         <Logo src={logo} />
-        hello Armand
+        hello Armand {}
       </Body>
     </>
   );
