@@ -45,7 +45,7 @@ const getConfig = (envs) => {
       ],
     },
     plugins: [
-      new webpack.EnvironmentPlugin(['APP', 'PUBLIC_PATH']),
+      new webpack.EnvironmentPlugin(['PUBLIC_PATH']),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, './source/index.html'),
       }),
