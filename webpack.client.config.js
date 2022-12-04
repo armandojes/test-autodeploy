@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const dotenv = require('dotenv');
-const webpack = require('webpack');
 
 const getConfig = (envs) => {
   dotenv.config({ path: path.resolve(__dirname, `./${envs.env}.env`) });
@@ -10,7 +9,7 @@ const getConfig = (envs) => {
   return {
     entry: path.resolve(__dirname, './source/index.tsx'),
     output: {
-      path: path.resolve(__dirname, './build'),
+      path: path.resolve(__dirname, './client'),
       filename: 'app.js',
       publicPath: process.env.PUBLIC_PATH,
     },
@@ -38,14 +37,14 @@ const getConfig = (envs) => {
           use: {
             loader: 'file-loader',
             options: {
-              publicPath: process.env.PUBLIC_PATH,
+              outputPath: 'assets',
+              publicPath: `${process.env.PUBLIC_PATH}assets/`,
             },
           },
         },
       ],
     },
     plugins: [
-      new webpack.EnvironmentPlugin(['PUBLIC_PATH']),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, './source/index.html'),
       }),
@@ -53,12 +52,17 @@ const getConfig = (envs) => {
     ].filter(Boolean),
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      alias: {
+        app: path.resolve(__dirname, './source/app'),
+        source: path.resolve(__dirname, './source'),
+      },
     },
     mode: envs.env === 'production' ? 'production' : 'development',
     devServer: {
-      port: 3000,
+      port: 3001,
       hot: true,
     },
+    target: 'web',
   };
 };
 

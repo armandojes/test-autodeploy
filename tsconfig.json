@@ -9,7 +9,7 @@
     "jsx": "react-jsx",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "baseUrl": "./source",
+    "baseUrl": "./",
     "resolveJsonModule": true,
     "allowJs": false,
     "checkJs": false,
@@ -19,10 +19,13 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-
     "strict": true,
     "noImplicitAny": true,
     "skipLibCheck": true
+  },
+  "paths": {
+    "app": ["./source/app/*"],
+    "source": ["./source/*"],
   },
   "include": [
     "./",

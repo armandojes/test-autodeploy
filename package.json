@@ -2,11 +2,13 @@
   "name": "apptest",
   "version": "1.0.0",
   "description": "",
-  "main": "public/index.js",
+  "main": "client/index.js",
   "scripts": {
-    "dev": "tsc && webpack serve  --env env=development",
-    "build": "tsc && webpack --env env=production",
-    "serve": "serve build"
+    "dev:client": "tsc && webpack serve --env env=development --config ./webpack.client.config.js",
+    "dev:server": "tsc && webpack --env env=development --config ./webpack.server.config.js  --watch",
+    "serverrender": "nodemon ./api/index.js -w ./api/index.js",
+    "build:client": "tsc && webpack --env env=production --config ./webpack.client.config.js",
+    "serve": "serve client"
   },
   "author": "armandojes",
   "license": "ISC",
@@ -32,6 +34,7 @@
     "eslint-plugin-react-hooks": "4.3.0",
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.5.0",
+    "nodemon": "^2.0.20",
     "prettier": "2.8.0",
     "react-refresh": "0.14.0",
     "serve": "14.1.2",
@@ -41,9 +44,12 @@
     "webpack-dev-server": "4.11.1"
   },
   "dependencies": {
+    "@emotion/css": "^11.10.5",
     "@emotion/react": "11.10.5",
+    "@emotion/server": "^11.10.0",
     "@emotion/styled": "11.10.5",
     "@mui/material": "5.10.16",
+    "express": "^4.18.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "5.3.6"
