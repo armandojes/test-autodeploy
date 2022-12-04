@@ -1,5 +1,4 @@
 {
-  "buildComand": "npm run build",
   "rewrites": [
     { "source": "/assets", "destination": "/assets" },
     { "source": "*", "destination": "api/index.js" }
