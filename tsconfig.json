@@ -15,7 +15,7 @@
     "checkJs": false,
     "declaration": true,
     "noEmit": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

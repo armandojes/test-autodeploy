@@ -1,7 +1,7 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const dotenv = require('dotenv');
+const webpack = require('webpack');
 
 const getConfig = (envs) => {
   dotenv.config({ path: path.resolve(__dirname, `./${envs.env}.env`) });
@@ -21,14 +21,8 @@ const getConfig = (envs) => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: [
-                '@babel/preset-env',
-                ['@babel/preset-react', { runtime: 'automatic' }],
-                '@babel/preset-typescript',
-              ],
-              plugins: [
-                envs.env === 'development' && 'react-refresh/babel',
-              ].filter(Boolean),
+              presets: ['@babel/preset-env', ['@babel/preset-react', { runtime: 'automatic' }], '@babel/preset-typescript'],
+              plugins: [envs.env === 'development' && 'react-refresh/babel'].filter(Boolean),
             },
           },
         },
@@ -44,12 +38,7 @@ const getConfig = (envs) => {
         },
       ],
     },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, './source/index.html'),
-      }),
-      envs.env === 'development' && new ReactRefreshWebpackPlugin(),
-    ].filter(Boolean),
+    plugins: [envs.env === 'development' && new ReactRefreshWebpackPlugin(), new webpack.EnvironmentPlugin(['ENV', 'PUBLIC_PATH'])].filter(Boolean),
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {
@@ -61,6 +50,7 @@ const getConfig = (envs) => {
     devServer: {
       port: 3001,
       hot: true,
+      headers: { 'Access-Control-Allow-Origin': '*' },
     },
     target: 'web',
   };

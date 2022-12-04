@@ -1,13 +1,13 @@
-// @ts-nocheck
-
-import { createRoot } from 'react-dom/client';
-
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+import { hydrateRoot } from 'react-dom/client';
 import App from './app/index';
 
-console.log('PUBLIC_PATH', process.env.NODE_ENV);
+const cache = createCache({ key: 'css-sync' });
 
-const root = createRoot(
-  document.getElementById('render_target') as HTMLElement
+hydrateRoot(
+  document.getElementById('render_target') as HTMLElement,
+  <CacheProvider value={cache}>
+    <App />
+  </CacheProvider>
 );
-
-root.render(<App />);

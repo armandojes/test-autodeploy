@@ -1,3 +1,5 @@
+import { PUBLIC_PATH } from 'source/env';
+
 /* eslint-disable no-empty-pattern */
 interface Markup {
   ({}: { content: string; style: string }): string;
@@ -15,6 +17,7 @@ const renderMarkup: Markup = ({ content, style }) => {
         </head>
         <body>
           <div id="render_target">${content}</div>
+          <script src=${PUBLIC_PATH}app.js></script>
         </body>
       </html>
     `;

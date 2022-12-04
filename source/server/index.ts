@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { env } from 'source/env';
+import { ENV } from 'source/env';
 import renderMarkup from './markup';
 import render from './render';
 
@@ -17,6 +17,6 @@ server.get('*', requestHandler);
 export default server;
 
 // doesn't execute at vercel env
-if (env !== 'production') {
+if (ENV !== 'production') {
   server.listen(3000);
 }

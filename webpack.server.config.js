@@ -1,5 +1,6 @@
 const path = require('path');
 const dotenv = require('dotenv');
+const webpack = require('webpack');
 
 const getConfig = (envs) => {
   dotenv.config({ path: path.resolve(__dirname, `./${envs.env}.env`) });
@@ -19,11 +20,7 @@ const getConfig = (envs) => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: [
-                '@babel/preset-env',
-                ['@babel/preset-react', { runtime: 'automatic' }],
-                '@babel/preset-typescript',
-              ],
+              presets: ['@babel/preset-env', ['@babel/preset-react', { runtime: 'automatic' }], '@babel/preset-typescript'],
               plugins: [],
             },
           },
@@ -33,14 +30,15 @@ const getConfig = (envs) => {
           use: {
             loader: 'file-loader',
             options: {
-              publicPath: process.env.PUBLIC_PATH,
+              outputPath: 'assets',
+              publicPath: `${process.env.PUBLIC_PATH}assets/`,
               emitFile: false,
             },
           },
         },
       ],
     },
-    plugins: [],
+    plugins: [new webpack.EnvironmentPlugin(['ENV', 'PUBLIC_PATH'])],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {

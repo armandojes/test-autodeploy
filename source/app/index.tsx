@@ -16,7 +16,7 @@ const Logo = styled.img`
   margin-bottom: 2em;
 `;
 
-const message: string = 'Hello armand';
+const message: string = 'JSX';
 
 function App() {
   return (
