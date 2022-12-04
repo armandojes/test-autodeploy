@@ -2,7 +2,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const webpack = require('webpack');
 
-const getConfig = (envs) => {
+const getWebpackConfig = (envs) => {
   dotenv.config({ path: path.resolve(__dirname, `./${envs.env}.env`) });
 
   return {
@@ -51,4 +51,4 @@ const getConfig = (envs) => {
   };
 };
 
-module.exports = getConfig;
+module.exports = getWebpackConfig;
